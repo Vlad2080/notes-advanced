@@ -1,16 +1,20 @@
 import React from 'react';
-import styles from './NoteList.module.css';
+import { Link } from 'react-router-dom';
 
 const NoteList = ({ notes, onDeleteNote }) => {
     return (
-        <ul className={styles.noteList}>
-            {notes.map(note => (
-                <li key={note.id} className={styles.noteItem}>
-                    {note.text}
-                    <button className={styles.deleteButton} onClick={() => onDeleteNote(note.id)}>Delete</button>
-                </li>
+        <div>
+            {notes.map((note) => (
+                <div key={note.id}>
+                    <h2>{note.title}</h2>
+                    <p>{note.content}</p>
+                    <button onClick={() => onDeleteNote(note.id)}>Delete</button>
+                    <Link to={`/edit/${note.id}`}>
+                        <button>Edit</button>
+                    </Link>
+                </div>
             ))}
-        </ul>
+        </div>
     );
 };
 

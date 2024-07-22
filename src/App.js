@@ -1,47 +1,44 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import ThemeContext from './context/ThemeContext';
-import useNotes from './hooks/useNotes';
-import Notes from './components/Notes';
-import NoteList from './components/NoteList';
-import styles from './App.module.css';
+import HomePage from './pages/HomePage';
+import CreateNotePage from './pages/CreateNotePage';
+import EditNotePage from './pages/EditNotePage';
+import LoginPage from './pages/LoginPage';
+import './App.css'; // Импортируйте существующий файл App.css
 
 const App = () => {
   const { theme, setTheme } = useContext(ThemeContext);
-  const { state, addNote, deleteNote, setFilter, filteredNotes } = useNotes();
-  const notesRef = useRef();
-
-  useEffect(() => {
-    console.log('Component mounted');
-    return () => console.log('Component unmounted');
-  }, []);
-
-  useLayoutEffect(() => {
-    console.log('Layout effect');
-  }, [state.notes]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1>Advanced Note Taking App</h1>
-        <button
-          className={styles.toggleButton}
-          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-        >
-          Toggle Theme
-        </button>
-      </div>
-      <Notes ref={notesRef} onAddNote={addNote} />
-      <input
-        className={styles.filterInput}
-        value={state.filter}
-        onChange={(e) => setFilter(e.target.value)}
-        placeholder="Filter notes"
-      />
-      <NoteList notes={filteredNotes} onDeleteNote={deleteNote} />
-      <button className={styles.toggleButton} onClick={() => notesRef.current.focus()}>
-        Focus on Add Note Input
-      </button>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <div className={`appContainer ${theme}`}>
+          <header>
+            <h1>Advanced Note Taking App</h1>
+            <button
+              className="toggleButton"
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            >
+              Toggle Theme
+            </button>
+            <nav>
+              <Link to="/">Home</Link>
+              <Link to="/create">Create Note</Link>
+              <Link to="/login">Login</Link>
+            </nav>
+          </header>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/create" element={<CreateNotePage />} />
+            <Route path="/edit/:id" element={<EditNotePage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        </div>
+      </Router>
+    </Provider>
   );
 };
 

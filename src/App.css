@@ -1,0 +1,48 @@
+/* Основные стили приложения */
+.appContainer {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Стили для заголовка */
+header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+/* Стили для кнопок */
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #21a1f1;
+}
+
+/* Стили для навигационных ссылок */
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Темные и светлые темы */
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: #333;
+  color: white;
+}

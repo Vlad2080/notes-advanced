@@ -1,55 +1,37 @@
-/* Reset CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Global styles */
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Theme variables */
-:root {
-  --bg-color-light: #ffffff;
-  --text-color-light: #000000;
-  --bg-color-dark: #333333;
-  --text-color-dark: #ffffff;
+.app-container {
+  text-align: center;
 }
 
-/* Applying theme */
-body.light {
-  --bg-color: var(--bg-color-light);
-  --text-color: var(--text-color-light);
-}
-
-body.dark {
-  --bg-color: var(--bg-color-dark);
-  --text-color: var(--text-color-dark);
-}
-
-/* Utility classes */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
+header {
+  background-color: #282c34;
   padding: 20px;
+  color: white;
 }
 
 button {
-  cursor: pointer;
+  margin: 5px;
 }
 
-input {
-  outline: none;
+input,
+textarea {
+  display: block;
+  margin: 10px auto;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 80%;
+  max-width: 500px;
 }
 
-input:focus {
-  border-color: #007bff;
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: #333;
+  color: white;
 }
