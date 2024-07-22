@@ -1,14 +1,17 @@
-import React, { forwardRef, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Notes = forwardRef(({ onAddNote }, ref) => {
+const CreateNote = ({ onAddNote }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const navigate = useNavigate();
 
     const handleAddNote = () => {
         if (title && content) {
             onAddNote({ title, content });
             setTitle('');
             setContent('');
+            navigate('/');
         } else {
             console.error('Title and content cannot be empty');
         }
@@ -17,7 +20,6 @@ const Notes = forwardRef(({ onAddNote }, ref) => {
     return (
         <div>
             <input
-                ref={ref}
                 type="text"
                 placeholder="Title"
                 value={title}
@@ -31,6 +33,6 @@ const Notes = forwardRef(({ onAddNote }, ref) => {
             <button onClick={handleAddNote}>Add Note</button>
         </div>
     );
-});
+};
 
-export default Notes;
+export default CreateNote;
