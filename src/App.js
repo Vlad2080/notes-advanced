@@ -22,7 +22,7 @@ const App = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>Advanced Note Taking App</h1>
+        <h1>Note Taking App</h1>
         <button
           className={styles.toggleButton}
           onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
